@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Vista – Smart Expense Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa, #e6eef8);
+            min-height: 100vh;
+            color: #2d3748;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 24px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .logo-icon {
+            width: 100px;
+            height: 100px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 24px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            background: linear-gradient(to right, #4299e1, #667eea);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: #4a5568;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-image {
+            position: relative;
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            border-radius: 24px;
+            margin: 20px 0;
+            aspect-ratio: 16/9;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 2;
+            width: 90%;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card h3 {
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #4a5568;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .screenshots {
+            margin: 60px 0;
+        }
+
+        .screenshots h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            background: linear-gradient(to right, #4299e1, #667eea);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .screenshot-grid img {
+            width: 100%;
+            border-radius: 16px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .screenshot-grid img:hover {
+            transform: scale(1.05);
+        }
+
+        .screens-list {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 24px;
+            margin: 60px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .screens-list h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            background: linear-gradient(to right, #4299e1, #667eea);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .screen-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 16px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .screen-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .screen-number {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #4299e1, #667eea);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .screen-content {
+            flex: 1;
+        }
+
+        .screen-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #2d3748;
+        }
+
+        .screen-content p {
+            color: #4a5568;
+        }
+
+        .cta {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(145deg, #4299e1, #667eea);
+            border-radius: 24px;
+            margin-top: 60px;
+            color: white;
+        }
+
+        .cta h2 {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #4299e1;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            background: white;
+        }
+
+        .tech-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 24px;
+            margin: 60px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .tech-section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            background: linear-gradient(to right, #4299e1, #667eea);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .tech-item {
+            padding: 25px;
+            background: white;
+            border-radius: 16px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .tech-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .tech-item h3 {
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1.25rem;
+        }
+
+        .tech-item p {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Responsive adjustments for tech section */
+        @media (max-width: 768px) {
+            .tech-section {
+                padding: 30px 20px;
+                margin: 40px 0;
+            }
+
+            .tech-section h2 {
+                font-size: 2rem;
+            }
+
+            .tech-grid {
+                gap: 20px;
+            }
+
+            .tech-item {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>    <div class="container">
+        <!-- Header with Logo -->
+        <header class="header">
+            <div class="logo-container">
+                <img src="https://res.cloudinary.com/dszdqpahf/image/upload/v1750244161/notification_icon_a5shnv.png" alt="ExpenseVista Logo" class="logo-icon">
+            </div>
+        </header>        <!-- Hero Section -->
+        <div class="hero">
+            <h1>Expense Vista</h1>
+            <p>Smarter Money. Better Life. Your AI-Powered Finance Companion.</p>
+        </div>
+
+        <!-- Hero Image Section -->
+        <div class="hero-image">
+            <img src="https://res.cloudinary.com/dszdqpahf/image/upload/v1750254026/Wil_efkke1.png" alt="ExpenseVista App Preview" />
+        </div>
+
+        <!-- Features Section -->
+        <div class="features">
+            <div class="feature-card">
+                <h3>🔄 Income & Expense Tracker</h3>
+                <p>Track earnings and spendings in real-time with smart categorization.</p>
+            </div>
+            <div class="feature-card">
+                <h3>📈 Visual Reports</h3>
+                <p>Beautiful charts and graphs to analyze your financial patterns.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🤖 AI Chat Advisor</h3>
+                <p>Get personalized financial advice from our smart AI assistant.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🧾 Smart Receipt Scanner</h3>
+                <p>Automatically extract data from receipts and bills.</p>
+            </div>
+            <div class="feature-card">
+                <h3>💼 Multiple Wallets</h3>
+                <p>Manage multiple accounts and cards in one place.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🎯 Budget Alerts</h3>
+                <p>Stay on track with smart budget notifications.</p>
+            </div>
+            <div class="feature-card">
+                <h3>� Advanced Analytics</h3>
+                <p>Deep insights into your spending patterns.</p>
+            </div>
+            <div class="feature-card">
+                <h3>� Bank-Grade Security</h3>
+                <p>Your financial data is always safe and encrypted.</p>
+            </div>
+        </div>
+
+        <!-- App Screens Section -->
+        <div class="screens-list">
+            <h2>App Features</h2>
+            
+            <div class="screen-item">
+                <div class="screen-number">1</div>
+                <div class="screen-content">
+                    <h3>Smart Dashboard</h3>
+                    <p>See your financial health at a glance with beautiful visualizations and key metrics.</p>
+                </div>
+            </div>
+            
+            <div class="screen-item">
+                <div class="screen-number">2</div>
+                <div class="screen-content">
+                    <h3>Quick Add Transactions</h3>
+                    <p>Add income or expenses instantly with smart categorization and receipt scanning.</p>
+                </div>
+            </div>
+            
+            <div class="screen-item">
+                <div class="screen-number">3</div>
+                <div class="screen-content">
+                    <h3>AI Financial Advisor</h3>
+                    <p>Get personalized tips and insights based on your spending patterns.</p>
+                </div>
+            </div>
+            
+            <div class="screen-item">
+                <div class="screen-number">4</div>
+                <div class="screen-content">
+                    <h3>Budget Management</h3>
+                    <p>Set and track budgets by category with smart alerts and recommendations.</p>
+                </div>
+            </div>
+            
+            <div class="screen-item">
+                <div class="screen-number">5</div>
+                <div class="screen-content">
+                    <h3>Reports & Analytics</h3>
+                    <p>Detailed financial reports with trend analysis and forecasting.</p>
+                </div>
+            </div>
+            
+            <div class="screen-item">
+                <div class="screen-number">6</div>
+                <div class="screen-content">
+                    <h3>Multi-Wallet Support</h3>
+                    <p>Manage multiple accounts, cards, and digital wallets in one place.</p>
+                </div>
+            </div>
+        </div>        <!-- Screenshots Section -->
+        <div class="screenshots">
+            <h2>App Preview</h2>
+            <div class="screenshot-grid">
+                <img src="https://res.cloudinary.com/dszdqpahf/image/upload/v1750254262/Screenshot_2025-04-26_113117_nj4ybs.png" alt="Dashboard">
+                <img src="https://res.cloudinary.com/dszdqpahf/image/upload/v1750254273/Screenshot_2025-04-26_112951_bmfk3s.png" alt="Transactions">
+                <img src="https://res.cloudinary.com/dszdqpahf/image/upload/v1750254272/Screenshot_2025-04-26_112927_zfekaj.png" alt="AI Chat">
+                <img src="https://res.cloudinary.com/dszdqpahf/image/upload/v1750254272/Screenshot_2025-04-26_112941_uo4vzk.png" alt="Reports">
+                <img src="https://res.cloudinary.com/dszdqpahf/image/upload/v1750254263/Screenshot_2025-04-26_113316_bgbpzr.png" alt="Budgets">
+                <img src="https://res.cloudinary.com/dszdqpahf/image/upload/v1750254273/Screenshot_2025-04-26_112951_bmfk3s.png" alt="Profile">
+                <img src="https://res.cloudinary.com/dszdqpahf/image/upload/v1750254260/Screenshot_2025-04-26_113004_mnmep2.png" alt="Profile">
+                <img src="https://res.cloudinary.com/dszdqpahf/image/upload/v1750254261/Screenshot_2025-04-26_113044_sa3jmd.png" alt="Profile">
+                <img src="https://res.cloudinary.com/dszdqpahf/image/upload/v1750254263/Screenshot_2025-04-26_113636_kpdzvh.png" alt="Profile">
+
+            </div>
+        </div>
+
+        <!-- Tech Section -->
+        <div class="tech-section">
+            <h2>Technologies & Features</h2>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h3>🔥 Firebase Integration</h3>
+                    <p>Real-time database sync, secure authentication, and cloud storage for receipts</p>
+                </div>
+                <div class="tech-item">
+                    <h3>📱 Cross-Platform</h3>
+                    <p>Fully optimized for both iOS and Android platforms</p>
+                </div>
+                <div class="tech-item">
+                    <h3>📦 Clean Architecture</h3>
+                    <p>Maintainable & scalable codebase with best practices</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🚀 Production Ready</h3>
+                    <p>Ready for deployment on App Store & Play Store</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta">
+            <h2>Start Managing Your Money Smarter Today</h2>
+            <p>Download ExpenseVista and take control of your finances</p>
+            <a href="#" class="cta-button">Download Now</a>
+        </div>
+    </div>
+
+    <script>
+        // Add smooth scrolling for better UX
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
