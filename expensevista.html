@@ -29,10 +29,8 @@
         .header {
             display: flex;
             align-items: center;
-            gap: 10px;
             margin-bottom: 30px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 20px;
+            background: linear-gradient(120deg, #e8e3f3 0%, #f7f6fa 60%, #ffffff 100%);
             border-radius: 24px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
@@ -40,12 +38,28 @@
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 5px;
+            width: 100%;
         }
 
         .logo-icon {
-            width: 100px;
-            height: 100px;
+            width: 150px;
+            height: 150px;
+        }
+
+        .logo-crop-box {
+            height: 150px;
+            width: 250px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            /* Optional: border-radius for smooth crop */
+        }
+
+        .logo-icon-right {
+            width: 100%;
+            height: 300px;
+            object-fit: contain;
+            display: block;
         }
 
         .hero {
@@ -306,6 +320,56 @@
             line-height: 1.5;
         }
 
+        /* Footer styles */
+        .footer {
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            margin-top: 60px;
+        }
+
+        .footer .copyright {
+            text-align: center;
+            color: #7c7e92;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            opacity: 0.8;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #5a4fcf;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .contact-item:hover {
+            color: #4299e1;
+        }
+
+        .contact-item svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .copyright {
+            font-size: 0.95rem;
+            color: #b0b2c3;
+            margin-top: 8px;
+        }
+
         /* Responsive adjustments for tech section */
         @media (max-width: 768px) {
             .tech-section {
@@ -331,9 +395,13 @@
         <!-- Header with Logo -->
         <header class="header">
             <div class="logo-container">
-                <img src="https://res.cloudinary.com/dszdqpahf/image/upload/v1750244161/notification_icon_a5shnv.png" alt="ExpenseVista Logo" class="logo-icon">
+                <img src="https://res.cloudinary.com/dszdqpahf/image/upload/v1750426453/pixelcut-export_1_eicib5.png" alt="ExpenseVista Logo" class="logo-icon">
+                <div class="logo-crop-box">
+                    <img src="https://res.cloudinary.com/dszdqpahf/image/upload/v1750426453/pixelcut-export_2_jqv0zt.png" alt="ExpenseVista Text Logo" class="logo-icon-right">
+                </div>
             </div>
-        </header>        <!-- Hero Section -->
+        </header>
+        <!-- Hero Section -->
         <div class="hero">
             <h1>Expense Vista</h1>
             <p>Smarter Money. Better Life. Your AI-Powered Finance Companion.</p>
@@ -475,10 +543,48 @@
         <div class="cta">
             <h2>Start Managing Your Money Smarter Today</h2>
             <p>Download ExpenseVista and take control of your finances</p>
-            <a href="https://drive.google.com/file/d/1Z2n14a8T1jenpwZH-mAtVe_w0_s_uQCg/view?usp=drive_link" class="cta-button">Download Now</a>
+            <a href="#" class="cta-button">Download Now</a>
         </div>
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="contact-info">
+                <a href="mailto:pritvekariya111@gmail.com" class="contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    pritvekariya111@gmail.com
+                </a>
+                <a href="tel:+919574649662" class="contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                    +91 95746 49662
+                </a>
+                <a href="https://www.linkedin.com/in/prit-vekariya-3b2b23251/" target="_blank" rel="noopener noreferrer" class="contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                    LinkedIn Profile
+                </a>
+            </div>
+            <p class="copyright">© 2025 ExpenseVista. All rights reserved.</p>
+        </footer>
     </div>
-
+    <script>
+        // Add smooth scrolling for better UX
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+        </footer>
+    </div>
     <script>
         // Add smooth scrolling for better UX
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
